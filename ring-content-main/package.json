@@ -1,0 +1,48 @@
+{
+  "name": "ringcontent",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "clean": "pnpm run -r clean",
+    "build:core": "pnpm run -r --filter './packages/core' build",
+    "build:application": "pnpm run -r --filter './packages/application' build",
+    "build:infra": "pnpm run -r --filter './packages/infrastructure/**' build && pnpm run -r --filter './packages/ioc' build",
+    "build:test": "pnpm run -r --filter './packages/test' build",
+    "build:ioc": "pnpm run -r --filter './packages/ioc' build",
+    "build:presentation": "pnpm run -r --filter './packages/presentation/**' build",
+    "build:all": "pnpm run build:core && pnpm run build:application && pnpm run build:infra && pnpm run build:test && pnpm run build:presentation",
+    "start:all": "pnpm run -r --parallel --if-present  --filter './packages/presentation/*' start:prod",
+    "update": "pnpm -r update",
+    "update:latest": "pnpm -r update --latest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "LICENCE",
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": "^22.12"
+  },
+  "devDependencies": {
+    "@vitest/coverage-istanbul": "^2.1.8",
+    "@vitest/coverage-v8": "^2.1.8",
+    "@vitest/ui": "^2.1.8",
+    "vitest": "^2.1.8"
+  },
+  "dependencies": {
+    "@ringcontent/application": "workspace:^",
+    "@ringcontent/cli": "workspace:^",
+    "@ringcontent/core": "workspace:^",
+    "@ringcontent/database": "workspace:^",
+    "@ringcontent/ioc": "workspace:^",
+    "@ringcontent/storage": "workspace:^",
+    "rimraf": "^6.0.1",
+    "tslib": "^2.8.1",
+    "typescript": "^5.7.2"
+  },
+  "resolutions": {
+    "eslint": "^9.8.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-eslint-plugin": "^6.2.0"
+  }
+}

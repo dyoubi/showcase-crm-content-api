@@ -1,0 +1,42 @@
+secretsprovider: awskms://alias/egamingchain-pulumi?region=ca-central-1
+encryptedkey: AQICAHj71/iWNKKT+dT7sBrmDkJkjO/t8h6Xlq/IEbwGmEZmmgHXcdDUHTI3cDml35tYtfV4AAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQM1q1F2OWFp6OqqGwMAgEQgDvVYO0MdZPrSkiyvLGtmtZGhUxpuL9AfVYPTi+SApuT6hQXolrQi+twlw8tohzcqReQ4l4bQbBFKD31Ww==
+config:
+  aws:region: ca-central-1
+  content-manager:helm:
+    autoscaling:
+      enabled: true
+    envVars:
+      AUTH_ENDPOINT: https://production.authentication.egamingchain.io/
+      AUTH_CLIENT_ID: egccontent
+      ENVIRONMENT: production
+      LOG: debug
+      REDIS_DB_DEFAULT: "0"
+      REDIS_URL: redis://redis-production-master.servers-infra:6379/
+    fullnameOverride: content-production
+    ingressClass: alb
+    namespace: content-manager
+    replicaCount: 1
+  content-manager:helmEnvVarsSecret: {}
+  content-manager:hostnames:
+    - "production.content.egamingchain.io"
+    - "content.egamingchain.io"
+    - "*.content.egamingchain.io"
+  content-manager:protect: "false"
+  content-manager:rds:
+    allocatedStorage: 20
+    dbName: ringcontent
+    dbSubnetGroupName: prod-rds
+    engineVersion: "16.3"
+    identifier: production-content-manager
+    instanceClass: db.t3.small
+    maxAllocatedStorage: 200
+    multiAz: false
+    username: ringcontent
+  content-manager:rdsParameterGroup:
+    family: "postgres16"
+    name: "rds-pg-ringcontent-production"
+    parameters:
+      - applyMethod: "immediate"
+        name: 'rds.force_ssl'
+        value: "0"
+  content-manager:infraStack: infra-main

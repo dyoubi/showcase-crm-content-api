@@ -1,0 +1,4 @@
+name: content-manager
+runtime: nodejs
+backend:
+  url: s3://egamingchain-pulumi

@@ -1,0 +1,1 @@
+export const STORAGE_ROOT_PATH: symbol = Symbol('STORAGE_ROOT_PATH');
