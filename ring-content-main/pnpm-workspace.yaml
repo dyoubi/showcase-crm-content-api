@@ -1,4 +1,0 @@
-packages :
- - "packages/**"
- - "!.k8s/*"
- - "!.docker/*"

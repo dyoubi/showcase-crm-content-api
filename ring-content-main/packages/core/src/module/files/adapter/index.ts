@@ -1,1 +1,0 @@
-export * from './file-accessor.adapter';

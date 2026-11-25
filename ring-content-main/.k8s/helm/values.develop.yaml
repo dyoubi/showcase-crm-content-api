@@ -1,7 +1,0 @@
-envVars: {}
-envVarsSecret: {}
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 1
-  targetCPUUtilizationPercentage: 80
